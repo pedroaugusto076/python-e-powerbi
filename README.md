@@ -2,98 +2,94 @@
 
 ## 📌 Visão Geral
 
-Este projeto tem como objetivo realizar uma análise exploratória do **Orçamento Público Federal de 2026**, aplicando um fluxo completo de análise de dados:
+Este projeto apresenta um fluxo completo de análise de dados aplicado ao **Orçamento Público Federal de 2026**, simulando um cenário real de trabalho de um Analista de Dados/BI.
 
-1. **Tratamento e preparação dos dados com Python**
-2. **Modelagem e construção de dashboard no Power BI**
+O processo foi dividido em três etapas principais:
 
-O projeto simula um cenário real de trabalho de um Analista de Dados/BI, onde os dados brutos precisam ser tratados antes de serem utilizados em visualizações estratégicas.
+1. Recebimento do arquivo bruto
+2. Tratamento e limpeza com Python
+3. Modelagem e visualização no Power BI
 
 ---
 
 # 🔄 Pipeline do Projeto
 
-## 🥇 Etapa 1 – Tratamento de Dados com Python
+## 🥇 1ª Etapa – Arquivo Bruto
 
-O arquivo CSV original continha:
+O arquivo original utilizado foi:
 
+```
+2026_OrcamentoDespesa.csv
+```
+
+Este é o dataset bruto disponibilizado publicamente, contendo:
+
+* 17.272 registros
+* 26 colunas
 * Valores monetários formatados como texto
 * Separadores de milhar (.)
-* Vírgulas como separador decimal
-* Colunas categóricas extensas
-* Necessidade de agregações e cálculos adicionais
+* Vírgula como separador decimal
+* Percentuais armazenados como string
 
-### 🔧 Processos realizados:
+Esse formato não estava adequado para análise direta.
 
-* Leitura do CSV com pandas
-* Conversão das colunas monetárias de string para float
-* Remoção de caracteres de formatação
-* Padronização dos dados
-* Criação de métricas agregadas
-* Cálculo do percentual de execução orçamentária
+---
 
-### 📌 Exemplo de cálculo:
+## 🧹 2ª Etapa – Tratamento e Limpeza com Python
+
+Foi criado o script:
+
+```
+main.py
+```
+
+Responsável por:
+
+* Ler o arquivo `2026_OrcamentoDespesa.csv`
+* Converter colunas monetárias de string para float
+* Remover caracteres de formatação (pontos e vírgulas)
+* Padronizar tipos de dados
+* Calcular métricas agregadas
+* Calcular percentual de execução
+
+### 📌 Fórmula utilizada:
 
 ```
 % Execução = (Orçamento Realizado / Orçamento Atualizado) * 100
 ```
 
-Após o tratamento, os dados ficaram prontos para análise e visualização.
-
----
-
-## 🥈 Etapa 2 – Modelagem e Dashboard no Power BI
-
-Com os dados tratados:
-
-* Importação do dataset limpo no Power BI
-* Criação de medidas DAX para cálculos dinâmicos
-* Construção de ranking de órgãos por orçamento
-* Análise por função governamental
-* Análise por grupo de despesa
-* Comparação entre orçamento atualizado e realizado
-* Visualização da execução percentual
-
-### 🎯 Objetivo do Dashboard
-
-Permitir que o usuário:
-
-* Identifique onde o orçamento está concentrado
-* Analise o nível de execução
-* Compare categorias de despesa
-* Explore dados de forma interativa
-
----
-
-# 🛠️ Ferramentas Utilizadas
-
-* **Python**
-
-  * pandas
-  * matplotlib
-* **Power BI**
-* Git
-* GitHub
-
----
-
-# 📂 Estrutura do Projeto
+Após o tratamento, foi gerado um novo arquivo limpo:
 
 ```
-orcamento-publico-2026/
-│
-├── data/
-│   └── 2026_OrcamentoDespesa.csv
-│
-├── scripts/
-│   └── main.py
-│
-├── dashboard/
-│   └── dashboard.pbix
-│
-├── README.md
-└── requirements.txt
+orcamento_2026_tratado.csv
 ```
+
+Este novo arquivo passou a conter dados prontos para modelagem e análise.
+
+---
+
+## 🥈 3ª Etapa – Visualização no Power BI
+
+Com o arquivo `orcamento_2026_tratado.csv` já tratado:
+
+* O dataset foi importado no Power BI Desktop
+* Foi criado um modelo simples para análise
+* Foram desenvolvidas medidas e visualizações
+
+Além disso, foi criado o script:
+
+```
+codigo_powerbi.py
+```
+
+Este script foi utilizado dentro do **Python Visual do Power BI**, permitindo gerar gráficos personalizados a partir do dataset tratado.
+
+Fluxo dentro do Power BI:
+
+1. Importação do `orcamento_2026_tratado.csv`
+2. Inserção de visual Python
+3. Utilização do `codigo_powerbi.py`
+4. Geração dos gráficos analíticos
 
 ---
 
@@ -101,46 +97,53 @@ orcamento-publico-2026/
 
 * Encargos Especiais concentram o maior volume orçamentário
 * Ministério da Fazenda lidera em orçamento atualizado
-* Previdência Social ultrapassa a marca de 1 trilhão de reais
+* Previdência Social ultrapassa 1 trilhão de reais
 * Ações relacionadas à dívida pública representam parcela significativa da execução
-* A execução orçamentária ainda está em estágio inicial do exercício
+* A execução orçamentária encontra-se em estágio inicial do exercício
 
 ---
 
 # 🚀 Como Executar o Projeto
 
-### 1️⃣ Clonar o repositório
+## 1️⃣ Clonar o repositório
 
 ```
 git clone https://github.com/seuusuario/orcamento-publico-2026.git
 ```
 
-### 2️⃣ Instalar dependências
+## 2️⃣ Instalar dependências
 
 ```
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Executar tratamento
+## 3️⃣ Executar o tratamento
 
 ```
 python main.py
 ```
 
-### 4️⃣ Abrir o dashboard
+Isso irá gerar:
 
-Abrir o arquivo `.pbix` no Power BI Desktop.
+```
+orcamento_2026_tratado.csv
+```
+
+## 4️⃣ Abrir o dashboard
+
+Abrir o arquivo `.pbix` no Power BI Desktop
+Ou utilizar o `codigo_powerbi.py` dentro do visual Python.
 
 ---
 
 # 💼 Competências Demonstradas
 
 * Limpeza e transformação de dados
-* Manipulação de grandes volumes de dados
-* Análise exploratória
-* Construção de indicadores
-* Business Intelligence
-* Comunicação de dados
+* Conversão e padronização de tipos
+* Criação de métricas analíticas
+* Construção de pipeline de dados
+* Integração Python + Power BI
+* Comunicação de insights
 
 ---
 
@@ -148,10 +151,10 @@ Abrir o arquivo `.pbix` no Power BI Desktop.
 
 * Comparação com anos anteriores
 * Análise temporal da execução
-* Automação do pipeline de dados
-* Criação de relatórios automatizados
+* Automatização do pipeline
+* Publicação do dashboard online
 * Integração com APIs públicas
 
 ---
 
-📎 Projeto desenvolvido para fins de estudo e portfólio em Análise de Dados e Business Intelligence.
+📎 Projeto desenvolvido com foco em portfólio profissional em Análise de Dados e Business Intelligence.
