@@ -103,7 +103,7 @@ Fluxo dentro do Power BI:
 
 ---
 
-# 🚀 Como Executar o Projeto
+# 🚀 Como Executar o Projeto!
 
 ## 1️⃣ Clonar o repositório
 
